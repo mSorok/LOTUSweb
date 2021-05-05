@@ -9,24 +9,24 @@ export default class Representations extends React.Component {
     render() {
         const naturalProduct = this.props.naturalProduct;
 
+        const bioschemas = {
+            "@context":"https://schema.org",
+            "@type":"MolecularEntity",
+            "name":" + naturalProduct.traditional_name + ",
+            "identifier":" + naturalProduct.lotus_id + ",
+            "iupacName":" + naturalProduct.iupac_name + ",
+            "inChIKey":" + naturalProduct.inchikey + ",
+            "url":"https://lotus.naturalproducts.net/compound/lotus_id/ + naturalProduct.lotus_id + ",
+            "inChI":" + naturalProduct.inchi +",
+            "smiles":" + (naturalProduct.smiles || naturalProduct.smiles2D) +"
+        };
+
         return (
             <Card className="compoundCardItem">
                 <Card.Body>
                     <Card.Title className="text-primary">Representations</Card.Title>
                     <br />
-                    <script type="application/ld+json" id="bioschemas">
-
-                            "@context":"https://schema.org",
-                            "@type":"MolecularEntity",
-                            "name":"{naturalProduct.traditional_name}",
-                            "identifier":"{naturalProduct.lotus_id}",
-                            "iupacName":"{naturalProduct.iupac_name}",
-                            "inChIKey":"{naturalProduct.inchikey}",
-                            "url":"https://lotus.naturalproducts.net/compound/lotus_id/{naturalProduct.lotus_id}",
-                            "inChI":"{naturalProduct.inchi}",
-                            "smiles":"{naturalProduct.smiles || naturalProduct.smiles2D }"
-
-                    </script>
+                    <script type="application/ld+json" id="bioschemas">{bioschemas}</script>
                     <Table responsive bordered hover size="sm" >
                         <tbody>
                         <tr key={"represent_id"}>
